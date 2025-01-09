@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kirito-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kirito
+  template:
+    metadata:
+      labels:
+        app: kirito
+    spec:
+      containers:
+      - name: kirito
+        image: dika007/kirito:latest
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kirito-service
+spec:
+  selector:
+    app: kirito
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
