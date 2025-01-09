@@ -1,0 +1,11 @@
+1. Identifying the Root Cause of a 5xx Error:
+- Check logs use kubectl : kubectl logs <pod-name>
+- Check if there is an overload in system resources using Prometheus, or Minikube dashboard
+
+2. Resolving the Issue:
+- Error Fixing: Update the application code to handle errors more gracefully.
+- Horizontal Scaling: Use Kubernetes auto-scaling:
+    Example : kubectl autoscale deployment kirito-deployment --cpu-percent=50 --min=1 --max=10
+
+3. Tools Used to Trace and Resolve the Issue:
+Docker Logs, Kubernetes Logs, Prometheus & Grafana
